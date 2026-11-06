@@ -1,0 +1,306 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  /* Readable text everywhere; the pixel face is kept only as an accent on page titles. */
+  --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+  --font-pixel: "JetBrains Mono", ui-monospace, monospace;
+  --font-display: "Pixelify Sans", "Plus Jakarta Sans", sans-serif;
+  --radius-sm: 0px;
+  --radius-md: 0px;
+  --radius-lg: 0px;
+  --radius-xl: 0px;
+  --radius-2xl: 0px;
+  --radius-3xl: 0px;
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-surface: var(--surface);
+  --color-canvas-2: var(--canvas-2);
+  --color-ink: var(--ink);
+  --color-ink-2: var(--ink-2);
+  --color-night: var(--night);
+  --color-night-2: var(--night-2);
+  --color-night-foreground: var(--night-foreground);
+  --color-night-muted: var(--night-muted);
+  --color-night-line: var(--night-line);
+  --color-pixel: var(--pixel);
+  --color-pixel-deep: var(--pixel-deep);
+  --color-blue-soft: var(--blue-soft);
+  --color-blue-on-dark: var(--blue-on-dark);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary-deep: var(--primary-deep);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-ring-offset-background: var(--background);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+:root {
+  --radius: 0px;
+  /* Brand palette */
+  --background: oklch(0.977 0.003 145);      /* #F7F8F6 */
+  --canvas-2: oklch(0.945 0.006 145);        /* #ECEFEB */
+  --surface: oklch(1 0 0);                   /* #FFFFFF */
+  --foreground: oklch(0.205 0.006 165);      /* #171A19 */
+  --ink: oklch(0.205 0.006 165);
+  --ink-2: oklch(0.5 0.012 155);             /* #626A65 */
+  --primary: oklch(0.6 0.2 268);             /* #456BFA */
+  --primary-deep: oklch(0.5 0.2 268);
+  --primary-foreground: oklch(0.99 0 0);
+  --blue-soft: oklch(0.95 0.03 268);
+  --blue-on-dark: oklch(0.74 0.13 262);
+  --pixel: oklch(0.83 0.15 128);             /* #A8D96C */
+  --pixel-deep: oklch(0.6 0.15 135);
+  --night: oklch(0.185 0.008 160);           /* #111513 */
+  --night-2: oklch(0.235 0.008 160);
+  --night-foreground: oklch(0.97 0.004 145);
+  --night-muted: oklch(0.72 0.01 150);
+  --night-line: oklch(1 0 0 / 0.12);
+  --border: oklch(0.9 0.008 145);            /* #DFE3DE */
+
+  --card: var(--surface);
+  --card-foreground: var(--foreground);
+  --popover: var(--surface);
+  --popover-foreground: var(--foreground);
+  --secondary: var(--canvas-2);
+  --secondary-foreground: var(--foreground);
+  --muted: var(--canvas-2);
+  --muted-foreground: var(--ink-2);
+  --accent: var(--blue-soft);
+  --accent-foreground: var(--foreground);
+  --destructive: oklch(0.58 0.22 27);
+  --destructive-foreground: oklch(0.99 0 0);
+  --input: var(--border);
+  --ring: var(--primary);
+  --sidebar: var(--surface);
+  --sidebar-foreground: var(--foreground);
+  --sidebar-primary: var(--primary);
+  --sidebar-primary-foreground: var(--primary-foreground);
+  --sidebar-accent: var(--canvas-2);
+  --sidebar-accent-foreground: var(--foreground);
+  --sidebar-border: var(--border);
+  --sidebar-ring: var(--primary);
+
+  /* Pixel UI: hard 2px outlines and solid offset drop shadows, no blur anywhere */
+  --px: 2px;
+  --shadow-soft: 0 0 0 var(--px) var(--ink), 4px 4px 0 var(--px) var(--ink);
+  --shadow-lift: 0 0 0 var(--px) var(--ink), 8px 8px 0 var(--px) var(--primary);
+  --ease-out-expo: steps(6, end);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+    /* Pixel UI: everything is square. Beats rounded-* utilities on purpose. */
+    border-radius: 0 !important;
+  }
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+  canvas {
+    image-rendering: pixelated;
+  }
+  body {
+    /* Desktop wallpaper: a sparse grid of 2px pixels on the canvas colour. */
+    background-color: var(--canvas-2);
+    background-image: conic-gradient(at 2px 2px, transparent 75%, color-mix(in oklab, var(--ink) 14%, transparent) 0);
+    background-size: 12px 12px;
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    line-height: 1.6;
+  }
+  h1, h2, h3, h4 {
+    letter-spacing: -0.025em;
+    line-height: 1.1;
+    text-wrap: balance;
+    font-weight: 600;
+  }
+  ::selection {
+    background: var(--pixel);
+    color: var(--ink);
+  }
+  :focus-visible {
+    outline: 3px dashed var(--primary);
+    outline-offset: 3px;
+  }
+}
+
+@utility container-k {
+  width: 100%;
+  max-width: 1240px;
+  margin-inline: auto;
+  padding-inline: max(16px, min(4vw, 48px));
+}
+@utility section-y {
+  padding-block: clamp(72px, 10vw, 140px);
+}
+@utility text-display {
+  /* page titles keep a light pixel accent */
+  font-family: var(--font-display);
+  font-size: clamp(2.4rem, 1.2rem + 4.6vw, 5rem);
+  letter-spacing: 0;
+  line-height: 1.02;
+}
+@utility text-section {
+  font-size: clamp(2rem, 1.3rem + 2.6vw, 3.4rem);
+  letter-spacing: -0.03em;
+  line-height: 1.06;
+}
+@utility text-lead {
+  font-size: 1.125rem;
+  line-height: 1.6;
+}
+@utility pixel-grid {
+  background-image:
+    linear-gradient(to right, color-mix(in oklab, var(--ink) 6%, transparent) 1px, transparent 1px),
+    linear-gradient(to bottom, color-mix(in oklab, var(--ink) 6%, transparent) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+@utility pixel-grid-dark {
+  background-image:
+    linear-gradient(to right, oklch(1 0 0 / 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, oklch(1 0 0 / 0.05) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+/* Former "glass" panels: solid pixel windows with a hard outline and shadow. */
+@utility glass-caption {
+  background: var(--night);
+  border: var(--px) solid var(--night-foreground);
+  box-shadow: 4px 4px 0 0 var(--pixel);
+  color: var(--night-foreground);
+}
+@utility glass-light {
+  background: var(--night);
+  border: var(--px) solid var(--night-foreground);
+  box-shadow: 4px 4px 0 0 var(--pixel);
+}
+@utility frosted-header {
+  background: var(--background);
+  border-bottom: var(--px) solid var(--ink);
+}
+/* Small uppercase labels: a readable monospace. */
+@utility font-pixel {
+  font-family: var(--font-pixel);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  line-height: 1.5;
+}
+@utility pixel-press {
+  box-shadow: 3px 3px 0 0 var(--ink);
+  transition: transform 80ms steps(1), box-shadow 80ms steps(1);
+  &:active {
+    transform: translate(3px, 3px);
+    box-shadow: 0 0 0 0 var(--ink);
+  }
+}
+@utility shadow-soft {
+  box-shadow: var(--shadow-soft);
+}
+@utility shadow-lift {
+  box-shadow: var(--shadow-lift);
+}
+@utility mask-fade-x {
+  /* stepped (dithered-looking) edge fade instead of a smooth gradient */
+  mask-image: linear-gradient(
+    to right,
+    transparent 0 2%,
+    rgb(0 0 0 / 0.25) 2% 4%,
+    rgb(0 0 0 / 0.5) 4% 6%,
+    rgb(0 0 0 / 0.75) 6% 8%,
+    black 8% 92%,
+    rgb(0 0 0 / 0.75) 92% 94%,
+    rgb(0 0 0 / 0.5) 94% 96%,
+    rgb(0 0 0 / 0.25) 96% 98%,
+    transparent 98%
+  );
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+@keyframes float-y {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-18px); }
+}
+@keyframes shadow-pulse {
+  0%, 100% { transform: scaleX(1); opacity: 0.35; }
+  50% { transform: scaleX(0.75); opacity: 0.18; }
+}
+@keyframes blink-caret {
+  0%, 49% { opacity: 1; }
+  50%, 100% { opacity: 0; }
+}
+@keyframes pixel-blink {
+  0%, 100% { opacity: 0; }
+  40%, 60% { opacity: 1; }
+}
+@keyframes drift {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(40px, -30px) scale(1.1); }
+}
+@utility animate-marquee {
+  animation: marquee var(--marquee-dur, 70s) linear infinite;
+}
+@utility animate-float {
+  animation: float-y 6s steps(8) infinite;
+}
+@utility animate-shadow {
+  animation: shadow-pulse 6s steps(8) infinite;
+}
+@utility animate-pixel {
+  animation: pixel-blink 3.2s steps(4) infinite;
+}
+@utility animate-drift {
+  animation: drift 16s steps(16) infinite;
+}
+@utility animate-caret {
+  animation: blink-caret 1s steps(1) infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Long-form prose (blog, legal) */
+.prose-k p { margin: 0 0 1.1em; color: var(--ink-2); }
+.prose-k h2 { font-size: 1.5rem; margin: 2.2em 0 0.6em; color: var(--ink); scroll-margin-top: 100px; }
+.prose-k a { color: var(--primary); text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 3px; }
+
+/* Pixel scrollbar */
+html { scrollbar-color: var(--ink) var(--canvas-2); }
+::-webkit-scrollbar { width: 14px; height: 14px; }
+::-webkit-scrollbar-track { background: var(--canvas-2); }
+::-webkit-scrollbar-thumb { background: var(--ink); border: 3px solid var(--canvas-2); }
